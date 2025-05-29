@@ -1,16 +1,16 @@
 
-import React, { useState } from "react";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 import {
+  CartesianGrid,
+  ReferenceLine,
   ResponsiveContainer,
-  ScatterChart,
   Scatter,
+  ScatterChart,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ZAxis,
-  ReferenceLine
+  ZAxis
 } from "recharts";
 
 export const ResponseTimeChart = ({ records, onPointClick }) => {

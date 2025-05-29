@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  ResponsiveContainer,
-  PieChart,
+  Cell,
   Pie,
-  Cell
+  PieChart,
+  ResponsiveContainer
 } from "recharts";
 
 export const AvailabilityGauge = ({ availability = 0 }) => {
