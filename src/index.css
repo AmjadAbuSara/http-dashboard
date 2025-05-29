@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  background-color: #181B23;
+  color: #F5F6FA;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.recharts-surface {
+  overflow: visible;
+}
+
+.recharts-default-tooltip {
+  background-color: #23263A !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.recharts-tooltip-label {
+  color: #F5F6FA !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+}
+
+.recharts-tooltip-item {
+  color: #F5F6FA !important;
+}
+
+.recharts-tooltip-item-name {
+  color: rgba(245, 246, 250, 0.7) !important;
+}
+
+.recharts-tooltip-item-value {
+  color: #4F8EF7 !important;
+  font-weight: 600 !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: rgba(245, 246, 250, 0.6) !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.05) !important;
+}
+
+.recharts-pie-label-text {
+  fill: #F5F6FA !important;
+}

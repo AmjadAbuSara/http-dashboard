@@ -1,0 +1,42 @@
+{
+  "name": "http-response-dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run tunnel\"",
+  "dev": "vite",
+  "tunnel": "cloudflared tunnel --url http://localhost:3000",
+  "build": "vite build",
+  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview"
+  },
+  "dependencies": {
+    "@heroui/react": "^2.7.8",
+    "@iconify/react": "latest",
+    "apexcharts": "^4.7.0",
+    "framer-motion": "^11.18.2",
+    "plotly.js": "^3.0.1",
+    "react": "^18.3.1",
+    "react-apexcharts": "^1.7.0",
+    "react-dom": "^18.3.1",
+    "react-plotly.js": "^2.6.0",
+    "react-query": "^3.39.3",
+    "recharts": "2.12.0",
+    "source-map-js": "^1.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/generator": "^7.27.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.27.0",
+    "@babel/traverse": "^7.27.0",
+    "@babel/types": "^7.27.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.11"
+  }
+}
