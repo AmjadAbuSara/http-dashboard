@@ -6,6 +6,10 @@ import { ResponseTimeChart } from "./components/response-time-chart";
 import { SimpleRecordingButton } from "./components/SimpleRecordingButton";
 import { SuccessFailPie } from "./components/success-fail-pie";
 import { useDashboardData } from "./hooks/use-dashboard-data";
+import { PUBLIC_URL_ENDPOINT } from './config';
+import { useDashboardData } from "./hooks/use-dashboard-data";
+console.log("Backend base URL:", PUBLIC_URL_ENDPOINT);
+
 const App = () => {
   const { data, isLoading } = useDashboardData();
   const [tutorialStep, setTutorialStep] = useState(0);

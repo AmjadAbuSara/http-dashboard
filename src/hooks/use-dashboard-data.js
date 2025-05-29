@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 // 🌐 Set your backend base URL
-const API_URL = "https://remind-dishes-orders-perception.trycloudflare.com/dashboard-data/";
-// Example: const API_URL = "https://alive-report-socket.trycloudflare.com/dashboard-data/";
+const API_URL = "https://exist-bless-cross-juan.trycloudflare.com/dashboard-data/";
+// Example: const API_URL = "https://anything.trycloudflare.com/dashboard-data/";
 
 export const useDashboardData = () => {
   const [data, setData] = useState(null);
@@ -25,7 +25,7 @@ export const useDashboardData = () => {
 
   useEffect(() => {
     fetchDashboardData();
-    const interval = setInterval(fetchDashboardData, 5000); // 🔄 every 5s
+    const interval = setInterval(fetchDashboardData, 5000);
     return () => clearInterval(interval);
   }, []);
 
