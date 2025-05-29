@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // 🌐 Set your backend base URL
-const API_URL = "https://closer-designing-race-featuring.trycloudflare.com/dashboard-data/";
+const API_URL = "https://im-mon-epa-individuals.trycloudflare.com/dashboard-data/";
 // Example: const API_URL = "https://anything.trycloudflare.com/dashboard-data/";
 
 export const useDashboardData = () => {
