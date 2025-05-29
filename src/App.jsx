@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDashboardData } from "./hooks/use-dashboard-data";
-import { MetricsPanel } from "./components/metrics-panel";
+import React, { useEffect, useRef, useState } from "react";
 import { AvailabilityGauge } from "./components/availability-gauge";
-import { SuccessFailPie } from "./components/success-fail-pie";
-import { ResponseTimeChart } from "./components/response-time-chart";
+import { MetricsPanel } from "./components/metrics-panel";
 import { RecordsTable } from "./components/records-table";
+import { ResponseTimeChart } from "./components/response-time-chart";
 import { SimpleRecordingButton } from "./components/SimpleRecordingButton";
+import { SuccessFailPie } from "./components/success-fail-pie";
+import { PUBLIC_URL_ENDPOINT } from './config';
+import { useDashboardData } from "./hooks/use-dashboard-data";
+console.log("Backend base URL:", PUBLIC_URL_ENDPOINT);
 
 const App = () => {
   const { data, isLoading } = useDashboardData();
