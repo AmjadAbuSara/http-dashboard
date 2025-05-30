@@ -1,6 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .fade-highlight {
+    animation: fadeHighlight 2s ease-in-out;
+  }
+
+  @keyframes fadeHighlight {
+    0%   { background-color: theme('colors.dashboard-highlight'); }
+    50%  { background-color: rgba(255, 213, 79, 0.3); }
+    100% { background-color: transparent; }
+  }
+}
 html {
   background-color: #181B23;
   color: #F5F6FA;
@@ -48,6 +59,23 @@ body {
 .recharts-cartesian-grid-vertical line {
   stroke: rgba(255, 255, 255, 0.05) !important;
 }
+
+.recharts-pie-label-text {
+  fill: #F5F6FA !important;
+}
+
+
+@layer utilities {
+  .animate-fade {
+    animation: fadeHighlight 2s ease-in-out;
+  }
+
+  @keyframes fadeHighlight {
+    0% { background-color: rgba(59, 130, 246, 0.5); }
+    100% { background-color: transparent; }
+  }
+}
+
 
 .recharts-pie-label-text {
   fill: #F5F6FA !important;

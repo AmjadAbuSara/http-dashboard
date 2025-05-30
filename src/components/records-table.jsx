@@ -8,7 +8,7 @@ import {
   TableRow
 } from "@heroui/react";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export const RecordsTable = ({ records, selectedTimestamp }) => {
   const formatDate = (timestamp) => {
@@ -28,33 +28,32 @@ export const RecordsTable = ({ records, selectedTimestamp }) => {
   };
 
   const safeRecords = Array.isArray(records) ? records : [];
-  const tableBodyRef = React.useRef(null);
+  const tableBodyRef = useRef(null);
+  const [highlightedTimestamp, setHighlightedTimestamp] = useState(null);
 
-  // Normalize selectedTimestamp once
   const normalizedSelected = selectedTimestamp
     ? new Date(selectedTimestamp).getTime()
     : null;
 
-  // Scroll to selected row
-  React.useEffect(() => {
-    if (!normalizedSelected) return;
-  
+  // Auto-scroll & animate row
+  useEffect(() => {
+    if (!normalizedSelected || !tableBodyRef.current) return;
+
     const timeout = setTimeout(() => {
-      if (tableBodyRef.current) {
-        const selectedRow = tableBodyRef.current.querySelector(
-          `[data-timestamp="${normalizedSelected}"]`
-        );
-        if (selectedRow) {
-          selectedRow.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }
+      const selectedRow = tableBodyRef.current.querySelector(
+        `[data-timestamp="${normalizedSelected}"]`
+      );
+      if (selectedRow) {
+        selectedRow.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightedTimestamp(normalizedSelected);
+
+        // Remove highlight after a while
+        setTimeout(() => setHighlightedTimestamp(null), 1500);
       }
-    }, 50); // Add slight delay to ensure DOM is rendered
-  
+    }, 100);
+
     return () => clearTimeout(timeout);
-  }, [normalizedSelected, records]); // 🔁 include `records` here!
+  }, [normalizedSelected, records]);
 
   return (
     <Card className="bg-dashboard-card border-none shadow-md p-6">
@@ -77,13 +76,16 @@ export const RecordsTable = ({ records, selectedTimestamp }) => {
           {safeRecords.length > 0 ? (
             [...safeRecords].reverse().map((record, index) => {
               const normalized = new Date(record.Timestamp).getTime();
+              const isSelected = normalized === normalizedSelected;
+
               return (
                 <TableRow
                   key={record.Timestamp + index}
                   data-timestamp={normalized}
-                  className={`
+                  className={`transition duration-300 ease-in-out
                     ${index % 2 === 0 ? "bg-[#1E2130]" : "bg-[#23263A]"}
-                    ${normalized === normalizedSelected ? "bg-blue-500 bg-opacity-20" : ""}
+                    ${isSelected ? "bg-blue-500 bg-opacity-20" : ""}
+                    ${highlightedTimestamp === normalized ? "animate-pulse" : ""}
                   `}
                 >
                   <TableCell className="text-gray-300">{formatDate(record.Timestamp)}</TableCell>

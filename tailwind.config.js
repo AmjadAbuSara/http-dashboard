@@ -12,7 +12,8 @@ export default {
         "dashboard-text": "#F5F6FA",
         "dashboard-error": "#F44336",
         "dashboard-success": "#4CAF50",
-        "dashboard-warning": "#F5A524"
+        "dashboard-warning": "#F5A524",
+        "dashboard-highlight": "#FFD54F" // 🔥 Added
       }
     }
   },

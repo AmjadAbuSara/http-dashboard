@@ -1,33 +1,34 @@
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-// 🌐 Set your backend base URL
-const API_URL = "https://delay-marijuana-certified-accommodation.trycloudflare.com/dashboard-data/";
-// Example: const API_URL = "https://anything.trycloudflare.com/dashboard-data/";
+const API_URL = "https://sean-scout-nickel-bras.trycloudflare.com/dashboard-data/";
+
+const fetcher = async (url) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const error = new Error("Failed to fetch");
+    error.status = res.status;
+    throw error;
+  }
+  return res.json();
+};
 
 export const useDashboardData = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const {
+    data,
+    error,
+    isLoading,
+    mutate: refetch
+  } = useSWR(API_URL, fetcher, {
+    refreshInterval: 5000,       // ⏱ auto refresh every 5s
+    revalidateOnFocus: true,     // 👀 refetch when tab gets focus
+    revalidateIfStale: false,    // 🧠 skip if recent
+    shouldRetryOnError: true     // 🔁 retry if error
+  });
 
-  const fetchDashboardData = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(API_URL);
-      const json = await res.json();
-      setData(json);
-    } catch (err) {
-      console.error("Error fetching dashboard data:", err);
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
+  return {
+    data,
+    isLoading,
+    error,
+    refetch
   };
-
-  useEffect(() => {
-    fetchDashboardData();
-    const interval = setInterval(fetchDashboardData, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return { data, isLoading, error, refetch: fetchDashboardData };
 };
