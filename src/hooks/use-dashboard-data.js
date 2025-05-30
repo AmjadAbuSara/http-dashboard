@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-const API_URL = "https://sean-scout-nickel-bras.trycloudflare.com/dashboard-data/";
+const API_URL = "https://rain-brokers-eyes-cruise.trycloudflare.com/dashboard-data/";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
