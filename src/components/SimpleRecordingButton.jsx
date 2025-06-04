@@ -1,4 +1,5 @@
-import React from 'react';
+// src/components/SimpleRecordingButton.jsx 
+import React from "react";
 
 export const SimpleRecordingButton = ({ records, fileName = "recorded_data.json" }) => {
   const handleDownload = () => {
@@ -18,7 +19,7 @@ export const SimpleRecordingButton = ({ records, fileName = "recorded_data.json"
     const minResponseTime = responseTimes.length > 0 ? Math.min(...responseTimes) : 0;
     const maxResponseTime = responseTimes.length > 0 ? Math.max(...responseTimes) : 0;
 
-    // Calculate Avg Req/Min
+    // Calculate Avg Req/Min (same as in App.jsx)
     let avgReqPerMin = 0;
     if (totalRecords > 1) {
       const firstTimestamp = new Date(records[0].Timestamp).getTime();
@@ -42,22 +43,21 @@ export const SimpleRecordingButton = ({ records, fileName = "recorded_data.json"
         failedRecords: failedRecords,
         avgRequestsPerMinute: parseFloat(avgReqPerMin),
       },
-      rawRecords: recordsWithoutParsedInfo, // Use the new array without ParsedInfo
+      rawRecords: recordsWithoutParsedInfo,
     };
 
     const dataStr = JSON.stringify(analyticalData, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', fileName);
-    document.body.appendChild(linkElement); // Required for Firefox
+    const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    const linkElement = document.createElement("a");
+    linkElement.setAttribute("href", dataUri);
+    linkElement.setAttribute("download", fileName);
+    document.body.appendChild(linkElement);
     linkElement.click();
     document.body.removeChild(linkElement);
   };
 
   return (
-    <button 
+    <button
       onClick={handleDownload}
       className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
     >

@@ -1,3 +1,4 @@
+// src/components/metrics-panel.jsx
 import { Icon } from "@iconify/react";
 import React from "react";
 
@@ -16,12 +17,13 @@ const MetricCard = ({ title, value, color, icon, unit = "" }) => {
   );
 };
 
-export const MetricsPanel = ({ metrics, isLoading }) => {
+export const MetricsPanel = ({ metrics }) => {
+  // If metrics is undefined, fall back to zeros:
   const safe = metrics || {
-    avg: 0,
-    max: 0,
-    min: 0,
-    avg_req_per_min: 0,
+    avg:         0,
+    max:         0,
+    min:         0,
+    req_per_min: 0   // <— this must match the key we pass from App.jsx
   };
 
   return (
@@ -49,7 +51,7 @@ export const MetricsPanel = ({ metrics, isLoading }) => {
       />
       <MetricCard
         title="Avg Req/Min"
-        value={safe.avg_req_per_min.toFixed(2)}
+        value={safe.req_per_min.toFixed(2)}   /* ← use req_per_min here */
         color="text-dashboard-accent"
         icon="lucide:activity"
       />
